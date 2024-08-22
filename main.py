@@ -20,6 +20,11 @@ def main():
     # Infinite loop condition
     should_run = True
 
+    # Groups and containers
+    group_updatable = pygame.sprite.Group()
+    group_drawable = pygame.sprite.Group()
+    Player.containers = (group_updatable, group_drawable)
+
     # Player
     p1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
 
@@ -30,9 +35,11 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        # Update rotation, render player
-        p1.update(dt)
-        p1.draw(screen)
+        # Update rotation/position, render player
+        for obj in group_updatable:
+            obj.update(dt)
+        for obj in group_drawable:
+            obj.draw(screen)
 
         pygame.display.flip()
         dt = game_clock.tick(60) / 1000  # 1/60 of a second / 1000
