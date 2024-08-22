@@ -5,15 +5,11 @@ from constants import PLAYER_SPEED, PLAYER_TURN_SPEED
 
 
 class Player(CircleShape):
-    containers = ()
 
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
         self.position = pygame.Vector2(x, y)
         self.rotation = 0
-
-        if len(self.containers) > 0:
-            self.add(self.containers)
 
     # in the player class
     def triangle(self):
